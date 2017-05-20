@@ -1,3 +1,95 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <div class="card">
+    <div class="card-block">
+        <form action="" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)" novalidate>
+            <h4 class="card-title" style="text-align: center">REGISTER</h4>
+            <div class="form-group row">
+                <label for="email" class="col-2 col-form-label">Email</label>
+                <div class="col-10">
+                    <input type="email" class="form-control" #emailRef="ngModel" required  id="email" minlength="4" maxlength="10" name="name" ngModel placeholder="Enter email">
+                    <div *ngIf="emailRef.errors && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+                        <div [hidden]="!emailRef.errors.required">
+                            please enter an email
+                        </div>
+                        <div [hidden]="!emailRef.errors.minlength">
+                            please enter atleast 4 characters
+                        </div>
+                        <div [hidden]="!emailRef.errors.maxlength">
+                            Don't exceed 10 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="username" class="col-2 col-form-label">Username</label>
+                <div class="col-10">
+                    <input class="form-control" type="text"  id="username" name="username" #username="ngModel" required minlength="6" ngModel placeholder="Enter username">
+                    <div *ngIf="username.errors && (username.dirty || username.touched)" class="alert alert-danger">
+                        <div [hidden]="username.errors.required">
+                            Please enter username
+                        </div>
+                        <div [hidden]="username.errors.minlength">
+                            the required length is 6
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="fname" class="col-2 col-form-label">Firstname</label>
+                <div class="col-10">
+                    <input class="form-control" type="text"  id="fname" #fname="ngModel" name="fname" required minlength="6" ngModel placeholder="Enter Firstname">
+                    <div *ngIf="fname.errors && (fname.dirty || fname.touched)">
+                        <div [hidden]="fname.errors.required">
+                            the field is required
+                        </div>
+                        <div [hidden]="fname.errors.minlength">
+                            the required minlength is 6
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lname" class="col-2 col-form-label">Lastname</label>
+                <div class="col-10">
+                    <input class="form-control" type="text" #lname="ngModel" required minlength="6" name="lname" id="lname" ngModel placeholder="Enter lastname">
+                    <div *ngIf="lname.errors && (lname.dirty || lname.touched)">
+                        <div [hidden]="lname.errors.required">
+                            The field is required
+                        </div>
+                        <div [hidden]="lname.errors.minlength">
+                            the required length is 6
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-2 col-form-label">Password</label>
+                <div class="col-10">
+                    <input class="form-control" type="password" name="password" id="password" #password="ngModel" required ngModel placeholder="Enter password">
+                    <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                        <div [hidden]="password.errors.require">
+                            The field is required
+                        </div>
+                        <div [hidden]="password.minlength">
+                            the minmum length is 6
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cpassword" class="col-2 col-form-label">Comfirm Password</label>
+                <div class="col-10">
+                    <input class="form-control" type="password"  id="cpassword" placeholder="Confirm Password">
+                </div>
+            </div>
+            <div class="form-group row">
+                 <button type="submit"[disabled]="!registerForm.valid" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+
+    </div>
+  </div>
+</div>
+
